@@ -65,10 +65,7 @@ class TextDrawer {
         if (shouldDrawText()) {
             float[] textPosition = getBestTextPosition();
 
-            /*
-             * 一部の端末で負の値になっていることがあるので
-             * その場合はテキストを描画しない
-             */
+            // added fix for LG
             for (float position : textPosition) {
                 if (position < 0) {
                     return;
