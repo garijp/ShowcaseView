@@ -65,6 +65,16 @@ class TextDrawer {
         if (shouldDrawText()) {
             float[] textPosition = getBestTextPosition();
 
+            /*
+             * 一部の端末で負の値になっていることがあるので
+             * その場合はテキストを描画しない
+             */
+            for (float position : textPosition) {
+                if (position < 0) {
+                    return;
+                }
+            }
+
             if (!TextUtils.isEmpty(mTitle)) {
                 canvas.save();
                 if (hasRecalculated) {
